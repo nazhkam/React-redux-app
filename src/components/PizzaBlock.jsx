@@ -16,11 +16,11 @@ function PizzaBlock({ name, price, imageUrl, sizes, types }) {
   const selectActiveType = (index) => {
     setActiveType(index);
   };
-  
+
   const selectActiveSize = (index) => {
     setActiveSize(index);
   };
-  
+
   return (
     <div className="pizza-block">
       <img className="pizza-block__image" src={imageUrl} alt="Pizza" />
