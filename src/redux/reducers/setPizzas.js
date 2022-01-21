@@ -1,12 +1,12 @@
 const setPizzasInitialState = {
-    pizzas: []
+    items: []
 }
 
-export function Pizzas(state = setPizzasInitialState, action) {
+export function setPizzas(state = setPizzasInitialState, action) {
     if (action.type === 'SET_PIZZAS') {
         return {
             ...state,
-            pizzas: action.payLoad
+            items: action.payLoad
         }
     }
     else return state

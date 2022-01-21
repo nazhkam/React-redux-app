@@ -1,7 +1,7 @@
-import {reducer1} from './reducer1'
-import {Pizzas} from './pizzas'
+import {filters} from './filters'
+import {setPizzas} from './setPizzas'
 import { combineReducers } from 'redux';
 
 
-const rootReduser = combineReducers({ reducer1, Pizzas });
+const rootReduser = combineReducers({setPizzas,filters });
 export default rootReduser;

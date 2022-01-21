@@ -4,30 +4,27 @@ import { Header } from './components'
 import { Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import Cart from './pages/Cart';
-import { connect } from 'react-redux'
-import { installPizzas } from './redux/actions/action2';
+import { useDispatch } from 'react-redux'
+import { setPizzas } from './redux/actions/setPizzas';
 
 
-
-function App(props) {
+function App() {
+  const dispatch= useDispatch();
 
   React.useEffect(() => {
-    fetch('http://localhost:3000/db.json').then((obj) => obj.json()).then((json)=>props.dispatch(installPizzas(json.pizzas)));  }, []);
+    fetch('http://localhost:3000/db.json').then((obj) => obj.json()).then((json)=>dispatch(setPizzas(json.pizzas)));  }, []);
 
   return (
     <div className="App">
       <div className="wrapper">
         <Header />
         <Routes>
-          <Route path='/' element={<Home pizzas={props.items} />} />
+          <Route path='/' element={<Home/>} />
           <Route path='/cart' element={<Cart />} />
         </Routes>
       </div>
     </div>
   );
 }
-const mapState = (state) => {
-  console.log(state)
-  return {items: state.Pizzas.pizzas}
-}
-export default connect(mapState)(App);
+
+export default App;

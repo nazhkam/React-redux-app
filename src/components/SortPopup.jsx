@@ -1,6 +1,7 @@
 import React from "react";
 
-function SortPopup({ items }) {
+function SortPopup({olditems,onClick}) {
+  const items=olditems
   const [visibleSort, setVisibleSort] = React.useState(false);
   const [activeSort, setActiveSort] = React.useState(0);
   const sortRef = React.useRef();
@@ -10,8 +11,11 @@ function SortPopup({ items }) {
       if (!e.path.includes(sortRef.current)) setVisibleSort(false);
     });
   }, []);
+
   const selectActiveSort = (index) => {
     setActiveSort(index);
+    onClick(index)
+
   };
 
   const toggleVisibleSort = () => {
@@ -34,7 +38,7 @@ function SortPopup({ items }) {
           />
         </svg>
         <b>Сортировка по:</b>
-        <span onClick={toggleVisibleSort}>{items[activeSort]}</span>
+        <span onClick={toggleVisibleSort}>{items[activeSort].name}</span>
       </div>
       {visibleSort && (
         <div className="sort__popup">
@@ -45,7 +49,7 @@ function SortPopup({ items }) {
                 onClick={() => selectActiveSort(index)}
                 key={index}
               >
-                {item}
+                {item.name}
               </li>
             ))}
           </ul>
@@ -56,3 +60,6 @@ function SortPopup({ items }) {
 }
 
 export default SortPopup;
+
+
+

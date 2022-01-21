@@ -1,9 +1,10 @@
 import React from "react";
 
-function Сategories({ items }) {
+function Сategories({ items,onClick }) {
   const [activeItem, setActiveItem] = React.useState(0);
   const selectItem = (index) => {
     setActiveItem(index);
+    onClick(index);
   };
   return (
     <div className="categories">
