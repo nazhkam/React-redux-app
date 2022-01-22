@@ -1,7 +1,7 @@
 import {filters} from './filters'
-import {setPizzas} from './setPizzas'
+import {pizzas} from './pizzas'
 import { combineReducers } from 'redux';
 
 
-const rootReduser = combineReducers({setPizzas,filters });
+const rootReduser = combineReducers({pizzas,filters });
 export default rootReduser;

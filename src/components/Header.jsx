@@ -1,7 +1,8 @@
 import React from "react";
-import pizzaLogo from "../assets/img/pizza-logo.svg";
-import { Button } from "../components";
 import { Link } from "react-router-dom";
+
+import { Button } from "../components";
+import pizzaLogo from "../assets/img/pizza-logo.svg";
 
 function Header() {
   return (

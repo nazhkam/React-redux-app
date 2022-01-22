@@ -1,9 +1,8 @@
 import React from "react";
 
-function SortPopup({olditems,onClick}) {
-  const items=olditems
+function SortPopup({ items, onClick,activeSort }) {
+ 
   const [visibleSort, setVisibleSort] = React.useState(false);
-  const [activeSort, setActiveSort] = React.useState(0);
   const sortRef = React.useRef();
 
   React.useEffect(() => {
@@ -11,12 +10,8 @@ function SortPopup({olditems,onClick}) {
       if (!e.path.includes(sortRef.current)) setVisibleSort(false);
     });
   }, []);
-
-  const selectActiveSort = (index) => {
-    setActiveSort(index);
-    onClick(index)
-
-  };
+   
+  const activeLabel = items.find((obj) => obj.type === activeSort).name;
 
   const toggleVisibleSort = () => {
     setVisibleSort(!visibleSort);
@@ -38,15 +33,15 @@ function SortPopup({olditems,onClick}) {
           />
         </svg>
         <b>Сортировка по:</b>
-        <span onClick={toggleVisibleSort}>{items[activeSort].name}</span>
+        <span onClick={toggleVisibleSort}>{activeLabel}</span>
       </div>
       {visibleSort && (
         <div className="sort__popup">
           <ul onClick={toggleVisibleSort}>
-            {items.map((item, index) => (
+            {items && items.map((item, index) => (
               <li
-                className={index === activeSort ? "active" : ""}
-                onClick={() => selectActiveSort(index)}
+                className={item.type === activeSort ? "active" : ""}
+                onClick={() => onClick(item.type)}
                 key={index}
               >
                 {item.name}
@@ -60,6 +55,3 @@ function SortPopup({olditems,onClick}) {
 }
 
 export default SortPopup;
-
-
-
