@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { setSortBy, setCategory } from '../redux/actions/setFilters';
+import { addPizzaToCart } from "../redux/actions/setPizzas"
 
 import { Categories, SortPopup, PizzaBlock, PizzaLoadingBlock } from "../components";
 import { fetchPizzas } from '../redux/actions/setPizzas';
@@ -37,7 +38,9 @@ function Home() {
   const setActiveSort=(type)=>{
     dispatch(setSortBy(type))
   }
-
+  const addPizza=(obj)=>{
+    dispatch(addPizzaToCart(obj))
+  }
   return (
     <div className="content">
       <div className="container">
@@ -48,8 +51,8 @@ function Home() {
         <h2 className="content__title">Все пиццы</h2>
         <div className="content__items">
           {isLoaded ? pizzas.map((item, index) => (
-            <PizzaBlock key={index} {...item} />
-          )): Array(10).fill(0).map((_,index)=> <PizzaLoadingBlock key={index} />)}
+            <PizzaBlock key={index} {...item} onClick={addPizza}/>
+          )): Array(4).fill(0).map((_,index)=> <PizzaLoadingBlock key={index} />)}
         </div>
       </div>
     </div>
